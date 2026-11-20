@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatStore - Carrito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MENU PRINCIPAL -->
+    <header>
+        <nav class="menu">
+
+            <h1>🐱 CatStore</h1>
+
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">🛒 Carrito</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- TITULO DEL CARRITO -->
+    <section class="titulo-tienda">
+
+        <h2>Mi Carrito 🛒</h2>
+
+        <p>Revisa tu producto antes de realizar tu compra.</p>
+
+    </section>
+
+
+    <!-- PRODUCTO SELECCIONADO -->
+    <section class="carrito">
+
+        <h2>Tu producto seleccionado</h2>
+
+        <div class="producto-carrito" id="producto-carrito">
+
+            <img id="imagen-producto" src="" alt="Producto">
+
+            <div class="datos-producto">
+
+                <h3 id="nombre-producto"></h3>
+
+                <p id="precio-producto"></p>
+
+                <h3 id="total-producto"></h3>
+
+                <button onclick="comprar()">Confirmar compra</button>
+
+            </div>
+
+        </div>
+
+        <p id="mensaje-vacio">
+            Tu carrito está vacío. ¡Visita nuestra tienda! 🐱
+        </p>
+
+        <a href="tienda.html" class="boton">Seguir comprando</a>
+
+    </section>
+
+
+    <!-- PIE DE PAGINA -->
+    <footer>
+
+        <h2>🐾 CatStore</h2>
+
+        <p>Todo para consentir a tu mejor amigo.</p>
+
+        <p>© 2026 CatStore. Todos los derechos reservados. ♥</p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // OBTENER DATOS DEL PRODUCTO
+        let parametros = new URLSearchParams(window.location.search);
+
+        let nombre = parametros.get("producto");
+        let precio = parametros.get("precio");
+        let imagen = parametros.get("imagen");
+
+
+        // MOSTRAR PRODUCTO
+        if (nombre && precio && imagen && Number(precio) > 0) {
+
+            document.getElementById("producto-carrito").style.display = "flex";
+
+            document.getElementById("mensaje-vacio").style.display = "none";
+
+            document.getElementById("imagen-producto").src = imagen;
+
+            document.getElementById("nombre-producto").textContent = nombre;
+
+            document.getElementById("precio-producto").textContent =
+                "Precio: $" + Number(precio).toLocaleString("es-MX") + " MXN";
+
+            document.getElementById("total-producto").textContent =
+                "Total: $" + Number(precio).toLocaleString("es-MX") + " MXN";
+
+        } else {
+
+            document.getElementById("producto-carrito").style.display = "none";
+
+        }
+
+
+        // CONFIRMAR COMPRA
+        function comprar() {
+
+            if (nombre && precio && imagen) {
+
+                alert("¡Gracias por comprar en CatStore! 🐱");
+
+                window.location.href = "index.html";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
